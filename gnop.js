@@ -10,10 +10,10 @@ window.gnop = window.gnop || {};
 
         var defaultOptions = {
             containerId: 'container',
-            interval: 1000 / 4,
+            interval: 1000 / 25,
             height: 200,
             width: 300,
-            playerHeight: 50,
+            playerHeight: 30,
             playerWidth: 10,
             playerPadding: 10,
             ballHeight: 5,
@@ -37,8 +37,22 @@ window.gnop = window.gnop || {};
         };
 
         var renderState = function(){
-            var stateAsJson = JSON.stringify(state, null, 4);
-            document.getElementById('container').innerText = stateAsJson;
+            var container = document.getElementById(options.containerId);
+
+            //var html = '<pre>' + JSON.stringify(state, null, 4) + '</pre>';
+
+            var html = '<canvas id="canvas" width="' + options.width + '" height="' + options.height + '"></canvas>';
+
+            container.innerHTML = html;
+
+            var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+            ctx.rect(state.player1.position.x, state.player1.position.y, state.player1.shape.width, state.player1.shape.height);
+            ctx.rect(state.player2.position.x, state.player2.position.y, state.player2.shape.width, state.player2.shape.height);
+            ctx.rect(state.ball.position.x, state.ball.position.y, state.ball.shape.width, state.ball.shape.height);
+            ctx.stroke();
         }
 
         var tick = function(){
@@ -56,7 +70,7 @@ window.gnop = window.gnop || {};
 
             var player2Init = {
                 shape: {height: options.playerHeight, width: options.playerWidth},
-                position: {x: options.width - options.playerPadding, y: options.playerPadding},
+                position: {x: options.width - options.playerPadding - options.playerWidth, y: options.playerPadding},
                 velocity: {x: 0, y: 0}
             };
 
