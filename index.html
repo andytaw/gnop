@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gnop</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+
+    <div>
+        <button onclick="window.gnop.start(true);">Start</button>    
+        <button onclick="window.gnop.stop();">Stop</button>    
+        <button onclick="window.gnop.start();">Start (Debug)</button>    
+        <button onclick="window.gnop.tick();">Tick</button>
+    </div>
+
+    <pre id="container">
+        
+    </pre>
+
+    <script src="gnop.js"></script>
+
+  </body>
+
+</html>
