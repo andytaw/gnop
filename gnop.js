@@ -32,7 +32,7 @@ window.gnop = window.gnop || {};
 
         var state = {
             ticks: 0,
-            score: [0, 0,],
+            score: [0, 0],
             keys: [[false, false], [false, false]]
         };
 
@@ -49,10 +49,16 @@ window.gnop = window.gnop || {};
             var ctx = c.getContext("2d");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
-            ctx.rect(state.player1.position.x, state.player1.position.y, state.player1.shape.width, state.player1.shape.height);
-            ctx.rect(state.player2.position.x, state.player2.position.y, state.player2.shape.width, state.player2.shape.height);
-            ctx.rect(state.ball.position.x, state.ball.position.y, state.ball.shape.width, state.ball.shape.height);
-            ctx.stroke();
+            ctx.fillStyle="#fff";
+            ctx.fillRect(state.player1.position.x, state.player1.position.y, state.player1.shape.width, state.player1.shape.height);
+            ctx.fillRect(state.player2.position.x, state.player2.position.y, state.player2.shape.width, state.player2.shape.height);
+            ctx.fillRect(state.ball.position.x, state.ball.position.y, state.ball.shape.width, state.ball.shape.height);
+
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+            ctx.font = "30px Verdana";
+            ctx.fillText(state.score[0], options.width * 0.25, options.height / 2 - 20);
+            ctx.fillText(state.score[1], options.width * 0.75 - 20, options.height / 2 - 20);
         }
 
         var tick = function(){
@@ -125,7 +131,7 @@ window.gnop = window.gnop || {};
             }
 
             var minPlayerY = options.playerPadding;
-            var maxPlayerY = options.height - options.playerPadding;
+            var maxPlayerY = options.height - options.playerPadding - options.playerHeight;
             state.player1.velocity.y = 0;
             state.player2.velocity.y = 0;
             if (state.keys[0][0] && state.player1.position.y < maxPlayerY) state.player1.velocity.y = 5;

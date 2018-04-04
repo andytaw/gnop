@@ -7,11 +7,19 @@
     <title>Gnop</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    canvas{
+      background-color: #000;
+    }
+    #control{
+      margin-bottom: 10px
+    }
+    </style>
   </head>
 
   <body>
 
-    <div>
+    <div id="control">
         <button onclick="window.gnop.start(true);">Start</button>    
         <button onclick="window.gnop.stop();">Stop</button>    
         <button onclick="window.gnop.start();">Start (Debug)</button>    
