@@ -25,7 +25,9 @@ window.gnop = window.gnop || {};
             buttons:[
                 ['q','a'],
                 ['p','l']
-            ]
+            ],
+            scoreHeight: 30,
+            foreColor: '#fff'
         };
 
         options = Object.assign({}, defaultOptions, options);
@@ -49,16 +51,16 @@ window.gnop = window.gnop || {};
             var ctx = c.getContext("2d");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
-            ctx.fillStyle="#fff";
+            ctx.fillStyle = options.foreColor;
             ctx.fillRect(state.player1.position.x, state.player1.position.y, state.player1.shape.width, state.player1.shape.height);
             ctx.fillRect(state.player2.position.x, state.player2.position.y, state.player2.shape.width, state.player2.shape.height);
             ctx.fillRect(state.ball.position.x, state.ball.position.y, state.ball.shape.width, state.ball.shape.height);
 
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
-            ctx.font = "30px Verdana";
-            ctx.fillText(state.score[0], options.width * 0.25, options.height / 2 - 20);
-            ctx.fillText(state.score[1], options.width * 0.75 - 20, options.height / 2 - 20);
+            ctx.font = options.scoreHeight + 'px Verdana';
+            ctx.fillText(state.score[0], options.width * 0.25, options.height / 2 - (options.scoreHeight / 2));
+            ctx.fillText(state.score[1], options.width * 0.75 - (options.scoreHeight / 2), options.height / 2 - (options.scoreHeight / 2));
         }
 
         var tick = function(){
